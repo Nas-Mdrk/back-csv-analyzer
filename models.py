@@ -528,7 +528,7 @@ class Metadata(db.Model):
             ).filter(
                 db.extract('month', cls.date) == month,
                 db.extract('year', cls.date) == year
-            ).group_by(cls.id_cookie, cls.action).all()
+            ).group_by(cls.action).all()
 
             # Formater les résultats en dictionnaire
             aggregated_data = [
