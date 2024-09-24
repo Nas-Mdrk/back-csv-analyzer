@@ -521,7 +521,6 @@ class Metadata(db.Model):
         """Retourne le poids total, le nombre total de lignes, et les actions par action et id_cookie pour un mois donné."""
         try:
             results = db.session.query(
-                cls.id_cookie,
                 cls.action,
                 func.sum(cls.poids).label('total_poids'),
                 func.sum(cls.nombre_de_lignes).label('total_lignes')
@@ -533,7 +532,7 @@ class Metadata(db.Model):
             # Formater les résultats en dictionnaire
             aggregated_data = [
                 {
-                    'id_cookie': result.id_cookie,
+                    'id_cookie': result.action,
                     'action': result.action,
                     'total_poids': result.total_poids,
                     'total_lignes': result.total_lignes
